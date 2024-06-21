@@ -5,6 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const baseUrl = 'http://localhost:1337';
 
 export function flattenAttributes(data: any): any {
   // Check if data is a plain object; return as is if not
@@ -47,7 +48,6 @@ export function flattenAttributes(data: any): any {
 }
 
 export async function getStrapiData(path: string, query: string) {
-  const baseUrl = 'http://localhost:1337';
 
   const url = new URL(path, baseUrl);
   url.search = query;
