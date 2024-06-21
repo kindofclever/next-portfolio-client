@@ -1,26 +1,6 @@
+import { HeroSectionProps } from '@/lib/interfaces';
 import { baseUrl } from '@/lib/utils';
 import Link from 'next/link';
-
-interface Image {
-  id: number;
-  url: string;
-  alternativeText: string | null;
-}
-
-interface Link {
-  id: number;
-  url: string;
-  text: string;
-}
-
-interface HeroSectionProps {
-  id: number;
-  __component: string;
-  heading: string;
-  subHeading: string;
-  heroImage: Image;
-  link: Link;
-}
 
 export function HeroSection({ data }: { readonly data: HeroSectionProps }) {
   const { heading, subHeading, heroImage, link } = data;
