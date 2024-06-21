@@ -1,5 +1,5 @@
+import { baseUrl } from '@/lib/constants';
 import { HeroSectionProps } from '@/lib/interfaces';
-import { baseUrl } from '@/lib/utils';
 import Link from 'next/link';
 
 export function HeroSection({ data }: { readonly data: HeroSectionProps }) {

@@ -1,12 +1,10 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { baseUrl } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
-export const baseUrl = 'http://localhost:1337';
-
 export function flattenAttributes(data: any): any {
   // Check if data is a plain object; return as is if not
   if (
