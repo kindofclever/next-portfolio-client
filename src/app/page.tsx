@@ -19,8 +19,13 @@ export default async function Home() {
 
   return (
     <main className='container py-6 mx-auto'>
-      <Button variant='outline'>{title}</Button>
-      <Button variant='outline'>{description}</Button>
+      <h1 className='text-5xl font-bold'>{title}</h1>
+      <p className='text-xl mt-4'>{description}</p>
+      <Button
+        variant='outline'
+        className='mt-4'>
+        Click me
+      </Button>
     </main>
   );
 }
