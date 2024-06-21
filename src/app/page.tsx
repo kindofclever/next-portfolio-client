@@ -1,19 +1,24 @@
 import { Button } from '@/components/ui/button';
+import qs from 'qs';
+import { getStrapiData } from '@/lib/utils';
 
-async function getStrapiData(path: string) {
-  const baseUrl = 'http://localhost:1337';
-
-  try {
-    const response = await fetch(baseUrl + path);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
+const homePageQuery = qs.stringify({
+  populate: {
+    blocks: {
+      populate: {
+        image: {
+          fields: ['url', 'alternativeText'],
+        },
+        link: {
+          populate: true,
+        },
+      },
+    },
+  },
+});
 
 export default async function Home() {
-  const cmsData = await getStrapiData('/api/home-page');
+  const cmsData = await getStrapiData('/api/home-page', homePageQuery);
 
   const { title, description } = cmsData.data.attributes;
 
