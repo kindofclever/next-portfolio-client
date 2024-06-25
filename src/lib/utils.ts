@@ -1,6 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { baseUrl } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -47,15 +46,26 @@ export function flattenAttributes(data: any): any {
 
 export async function getStrapiData(path: string, query: string) {
 
-  const url = new URL(path, baseUrl);
+  const url = new URL(path, process.env.NEXT_PUBLIC_BASE_URL);
   url.search = query;
 
   try {
-    const response = await fetch(url.href);
+    const response = await fetch(url.href, { cache: 'no-store' });
     const data = await response.json();
     const flattenedData = flattenAttributes(data);
     return flattenedData;
   } catch (error) {
     console.error(error);
   }
+}
+
+export function getStrapiURL() {
+  return process.env.NEXT_PUBLIC_CMS_URL;
+}
+
+export function getStrapiMedia(url: string | null) {
+  if (url == null) return null;
+  if (url.startsWith("data:")) return url;
+  if (url.startsWith("http") || url.startsWith("//")) return url;
+  return `${getStrapiURL()}${url}`;
 }

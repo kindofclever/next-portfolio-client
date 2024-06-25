@@ -1,23 +1,19 @@
-import { baseUrl } from '@/lib/constants';
 import { HeroSectionProps } from '@/lib/interfaces';
 import Link from 'next/link';
+import { CmsImage } from './CmsImage';
 
 export function HeroSection({ data }: { readonly data: HeroSectionProps }) {
-  const { heading, subHeading, heroImage, link } = data;
+  const { heading, subHeading, heroImage, link, skills } = data;
 
-  const imageURL = baseUrl + heroImage.url;
+  const imageURL = process.env.NEXT_PUBLIC_BASE_URL + heroImage.url;
 
   return (
     <header className='relative h-[600px] overflow-hidden'>
-      <img
+      <CmsImage
         alt='Background'
-        className='absolute inset-0 object-cover w-full h-full'
-        height={1080}
+        className='absolute inset-0 object-cover w-full h-full aspect/16:9'
         src={imageURL}
-        style={{
-          aspectRatio: '1920/1080',
-          objectFit: 'cover',
-        }}
+        height={1080}
         width={1920}
       />
       <div className='relative z-10 flex flex-col items-center justify-center h-full text-center text-white bg-black bg-opacity-20'>
